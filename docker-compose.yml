@@ -14,6 +14,9 @@ services:
         working_dir: /var/www/
         volumes:
             - ./:/var/www
+        depends_on:
+            -   redis
+            -   queue
         networks:
             - microservices
         extra_hosts:
@@ -45,6 +48,31 @@ services:
             - ./.docker/mysql/dbdata:/var/lib/mysql
         ports:
             - 3308:3306
+        networks:
+            - microservices
+
+    # queue
+    queue:
+        build:
+            args:
+                user: eduardo
+                uid: 1000
+            context: ./
+            dockerfile: Dockerfile
+        command: 'php artisan queue:work'
+        restart: unless-stopped
+        volumes:
+            - ./:/var/www
+        depends_on:
+            - redis
+        networks:
+            - microservices
+
+    # redis
+    redis:
+        image: redis:latest
+        ports:
+            - 6378:6379
         networks:
             - microservices
 
