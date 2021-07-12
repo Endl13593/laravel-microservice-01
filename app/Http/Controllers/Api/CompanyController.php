@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreUpdateCompany;
 use App\Http\Resources\CompanyResource;
 use App\Models\Company;
+use App\Services\EvaluationService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
@@ -13,12 +14,15 @@ use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 class CompanyController extends Controller
 {
     protected $repository;
+    protected $evaluationService;
+
     /**
      * CompanyController constructor.
      */
-    public function __construct(Company $model)
+    public function __construct(Company $model, EvaluationService $evaluationService)
     {
         $this->repository = $model;
+        $this->evaluationService = $evaluationService;
     }
 
     public function index(Request $request): AnonymousResourceCollection
@@ -39,7 +43,9 @@ class CompanyController extends Controller
     {
         $company = $this->repository->where('uuid', $uuid)->firstOrFail();
 
-        return new CompanyResource($company);
+        $evaluations = $this->evaluationService->getEvaluationsCompany($uuid);
+
+        return (new CompanyResource($company))->additional(['evaluations' => json_decode($evaluations)]);
     }
 
     public function update(StoreUpdateCompany $request, $uuid): array

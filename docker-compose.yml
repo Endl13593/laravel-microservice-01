@@ -16,6 +16,8 @@ services:
             - ./:/var/www
         networks:
             - microservices
+        extra_hosts:
+            - "host.docker.internal:host-gateway"
 
     # nginx
     nginx:

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7759431e303e2d722a264a8a991a9e84",
+    "content-hash": "36f627a3834f7e3ebd4ae56139d15352",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -421,6 +421,43 @@
                 }
             ],
             "time": "2020-12-29T14:50:06+00:00"
+        },
+        {
+            "name": "endl13593/communication-microservices",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Endl13593/communication-microservices.git",
+                "reference": "32382455a3fc52ae492f9f29d945cd6e8816845e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Endl13593/communication-microservices/zipball/32382455a3fc52ae492f9f29d945cd6e8816845e",
+                "reference": "32382455a3fc52ae492f9f29d945cd6e8816845e",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Endl13593\\CommunicationMicroservices\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Eduardo Nunes",
+                    "email": "nunes.eduardo1993@gmail.com"
+                }
+            ],
+            "description": "Package For Communication Microservices",
+            "support": {
+                "issues": "https://github.com/Endl13593/communication-microservices/issues",
+                "source": "https://github.com/Endl13593/communication-microservices/tree/1.0.0"
+            },
+            "time": "2021-07-12T19:26:40+00:00"
         },
         {
             "name": "fideloper/proxy",
