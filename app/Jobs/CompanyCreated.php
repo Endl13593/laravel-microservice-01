@@ -2,7 +2,6 @@
 
 namespace App\Jobs;
 
-use App\Mail\WelcomeNewCompany;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -34,6 +33,6 @@ class CompanyCreated implements ShouldQueue
      */
     public function handle()
     {
-        Mail::to($this->email)->send(new WelcomeNewCompany());
+        //
     }
 }
