@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Models\Company;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Http\UploadedFile;
 use Tests\TestCase;
 
 class CompanyTest extends TestCase
@@ -75,12 +76,20 @@ class CompanyTest extends TestCase
     {
         $category = Category::factory()->create();
 
-        $response = $this->postJson($this->endpoint, [
-            'category_id' => $category->id,
-            'name' => 'Empresa01',
-            'email' => 'contato@empresa01.com.br',
-            'whatsapp' => '92995254145',
-        ]);
+        $image = UploadedFile::fake()->image('eti.png');
+
+        $response = $this->call(
+            'POST',
+            $this->endpoint,
+            [
+                'category_id' => $category->id,
+                'name' => 'Empresa01',
+                'email' => 'contato@empresa01.com.br',
+                'whatsapp' => '92995254145',
+            ],
+            [],
+            ['image' => $image]
+        );
 
         $response->assertStatus(201);
     }
